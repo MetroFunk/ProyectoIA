@@ -1,4 +1,4 @@
-import network2
+import redneuronal
 import cargador
 import numpy as np
 
@@ -15,25 +15,21 @@ if __name__ == "__main__":
     datosEntrenamiento, datosValidacion, datosTest = cargarDatos()
 
     #Parametros de la red nuronal
-    capas = [784, 50,50,50, 10]
+    capas = [784, 50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50, 10]
     lambda1 = 5.0
     learningRate = 0.01
-    epocas = 20
+    epocas = 5
     numeroBatch = 10
 
 
     # Crea la red neuronal, test y validacion
-    redO = network2.Red(capas, costo=network2.FuncionCosto)
+    redO = redneuronal.Red(capas, costo=redneuronal.FuncionCosto)
     redO.inicializadorPesos2()
     datos = redO.iniciar(datosEntrenamiento, epocas, numeroBatch, learningRate, datosEvaluacion=datosTest)
     redO.salvar('data1.txt')
-    #print(datos[0])
-    #print(datos[2])
     datos1 = [x ** 2 for x in datos[0]]
     datos1 = np.array(datos1)
     datos2 = np.array(datos[2])
-    #datos1 = np.array([4.732550520972663, 3.3559446884932931, 2.7157110843172574, 2.3507242271659599, 2.1116425239417533])
-    #datos2 = np.array([4.916585633020718, 3.5427402388468967, 2.8843432159506563, 2.5022236221977385, 2.2486628322790754])
     redO.graficar(datos1,datos2, range(len(datos1)), range(len(datos2)))
     redO.salvar1('data2.txt',np.array_str(datos1),np.array_str(datos2))
     
